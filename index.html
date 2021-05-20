@@ -16,10 +16,10 @@
         <title>BoolZapp web</title>
     </head>
     <body>
-        <!-- Container esterno webAbb -->
+        <!-- Container webApp -->
         <div class="container">
             <div class="green_line"></div>
-            <!-- container app Vue-js -->
+            <!-- Container Vue-js -->
             <!-- Left-box -->
             <div id="app" class="container_app">
                 <aside class="contacts_side">
@@ -37,10 +37,10 @@
                         </div>
                     </div>
                     <div class="blue_line">
-                        <div class="logo_notifies">
+                        <div class="logo_notifications">
                             <i class="fas fa-bell-slash"></i>
                         </div>
-                        <div class="link_notifies">
+                        <div class="link_notifications">
                             <p>Ricevi notifiche di nuovi messaggi</p>
                             <a href="#">Attiva notifiche Desktop</a>
                         </div>
@@ -51,11 +51,11 @@
                     </div>
                     <!-- contacts area -->
                     <div class="contacts">
-                        <div class="user_box active">
+                        <div v-for="contact, index in contacts" class="user_box active">
                             <div class="user_box_img">
-                                <img src="img/avatar_1.jpg" alt="Avatar">
+                                <img :src="'img/avatar' + contact.avatar + '.jpg'" alt="Avatar">
                                 <div class="user_box_name">
-                                    <h4>Michele</h4>
+                                    <h4>{{ contact.name }}</h4>
                                     <span>Tutto fatto!...</span>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                 <span>16:15:22</span>
                             </div>
                         </div>
-                        <div class="user_box">
+                        <!-- <div class="user_box">
                             <div class="user_box_img">
                                 <img src="img/avatar_3.jpg" alt="Avatar">
                                 <div class="user_box_name">
@@ -102,20 +102,20 @@
                                 <span>10/01/2020</span>
                                 <span>16:15:22</span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- /contacts area -->
                 </aside>
                 <!-- /Left-box -->
                 <!-- Right-box -->
-                <section class="messagges_side">
+                <section class="message_side">
                     <div class="header">
                         <div class="user">
                             <div class="user_img">
                                 <img src="img/avatar_1.jpg" alt="User Avatar">
                                 <div class="name_last">
                                     <span id="chat_name">Michele</span>
-                                    <span id="last_access">Ultimo accesso oggi alle 10/01/2020 16:15:22</span>
+                                    <span id="last_access">Ultimo accesso oggi 10/01/2020 alle 16:15:22</span>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <!-- Message-area -->
-                    <div class="messagge_box">
+                    <div class="message_box">
                         <div class="message clearfix">
                             <div class="received">
                                 <p>Tutto fatto!</p>
@@ -151,6 +151,7 @@
                     </div>
                     <!-- /Message-area -->
                     <!-- /Right-box -->
+                    <!-- Footer box -->
                     <div class="footer_right">
                         <div class="smile">
                             <i class="far fa-smile"></i>
@@ -162,10 +163,13 @@
                             <i class="fas fa-microphone"></i>
                         </div>
                     </div>
-                    </div>
+                    <!-- Footer box -->
                 </section>
+                <!-- /Right-box -->
             </div>
+            <!-- /Container Vue-js -->
         </div>
+        <!-- /Container web-App -->
         <script src="js/script.js"></script>
     </body>
 </html>
