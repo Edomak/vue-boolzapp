@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -20,11 +21,177 @@
 
 .container_app {
     position: absolute;
+    display: flex;
     margin: auto;
     top: 30px;
     right: 150px;
     width: 80%;
     height: 93%;
-    background-color: gold;
+    /* background-color: gold; */
+}
+
+.contacts_side {
+    width: 40%;
+    height: 100%;
+    background-color: white;
+}
+
+.messagges_side {
+    width: 60%;
+    height: 100%;
+    background-color: black;
+}
+
+/* App */
+
+/* Left-Box */
+
+.header_left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 0 10px;
+    background-color: #eaeaea;
+}
+
+.user_img {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+.user_img p {
+   font-size: 14px;
+   margin-left: 8px;
+   font-weight: bold;
+   color: #1b3039;
+}
+
+.header_left .user_img img {
+    height: 50px;
+    border-radius: 40px;
+}
+
+.icons_right {
+    width: 30%;
+    text-align: right;
+}
+
+.icons_right i {
+    font-size: 20px;
+    padding: 0 8px;
+    color: #b1b1b1;
+}
+
+.blue_line {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 0 10px;
+    background-color: #8edafc;
+}
+
+.blue_line .logo_notifies > i {
+    padding: 10px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 40px;
+    color: #8edafc;
+}
+
+.link_notifies {
+    margin-left: 8px;
+}
+
+.link_notifies p {
+    font-size: 14px;
+    color: #1b3039;
+}
+.link_notifies a {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Search or chat */
+
+.search {
+    width: 100%;
+    height: 45px;
+    background-color:#fafafa;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search i {
+    font-size: 13px;
+    color: #b1b1b1;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.search_input {
+    height: 70%;
+    width: 100%;
+    border: 1px solid white;
+}
+
+/* Contacts */
+
+.contacts {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.user_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 70px;
+    padding: 0 10px;
+    background-color: white;
+    border-bottom: 1px solid #e8ebeb;
+}
+
+.active {
+    background-color: #e8ebeb;
+}
+
+.user_box_img {
+    display: flex;
+    align-items: center;
+}
+
+.user_box_img img {
+    height: 50px;
+    border-radius: 40px;
+}
+
+.user_box_name {
+    position: relative;
+    bottom: 10px;
+    margin-left: 8px;
+}
+ .user_box_name h4 {
+    font-size: 14px;
+    color: #1b3039;
+ }
+
+ .user_box_name span {
+    font-size: 12px;
+    color: grey;
+ }
+
+ .date {
+     position: relative;
+     bottom: 25px;
+     text-align: right;
+ }
+ .date span {
+    font-size: 10px;
+    color: grey;
 }
 
