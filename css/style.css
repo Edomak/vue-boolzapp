@@ -5,6 +5,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.clearfix {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .container {
     display: flex;
     position: relative;
@@ -39,14 +45,14 @@
 .messagges_side {
     width: 60%;
     height: 100%;
-    background-color: black;
+    /* background-color: black; */
 }
 
 /* App */
 
 /* Left-Box */
 
-.header_left {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,6 +64,7 @@
 
 .user_img {
     width: 70%;
+    height: 100%;
     display: flex;
     align-items: center;
 }
@@ -68,7 +75,7 @@
    color: #1b3039;
 }
 
-.header_left .user_img img {
+.header .user_img img {
     height: 50px;
     border-radius: 40px;
 }
@@ -136,6 +143,7 @@
     height: 70%;
     width: 100%;
     border: 1px solid white;
+    border-radius: 5px;
 }
 
 /* Contacts */
@@ -194,4 +202,115 @@
     font-size: 10px;
     color: grey;
 }
+
+/* Right-Box */
+
+#last_access {
+    display: inline-block;
+    font-size: 10px;
+    color: grey; 
+    padding-top: 5px;
+}
+
+#chat_name {
+    display: inline-block;
+    font-size: 14px;
+    color: #1b3039;
+}
+
+.messagge_box {
+    width: 100%;
+    height: calc(100% - 120px);
+    background-image: url(../img/mine.jpg);
+    background-size: contain;
+    background-repeat: repeat;
+    padding: 30px 0;
+}
+
+.message {
+    width: 100%;
+}
+
+.received {
+    float: right;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #d4faba;
+    border-radius: 8px;
+    margin: 5px 40px;
+}
+.sent {
+    float: left;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    background-color: white;
+    border-radius: 8px;
+    margin: 15px 40px;
+}
+.sent p,
+.received p {
+    display: inline;
+    color: #1b3039;
+    font-size: 12px;
+    margin-left: 10px;
+}
+.sent span,
+.received span {
+    position: relative;
+    left: 90px;
+    top: 10px;
+    font-size: 8px;
+    color: grey;
+}
+
+
+
+/* Footer-write */
+
+.footer_right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #f3eee9;
+}
+
+.smile,
+.record {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+}
+.smile i,
+.record i {
+    font-size: 25px;
+    color: grey;
+}
+.write {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.write > input {
+    width: 100%;
+    height: 60%;
+    border-radius: 5px;
+    border: none;
+}
+
+::placeholder {
+    font-size: 12px;
+    padding-left: 20px;
+    color: grey;
+}
+
+
 

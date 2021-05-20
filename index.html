@@ -20,10 +20,11 @@
         <div class="container">
             <div class="green_line"></div>
             <!-- container app Vue-js -->
+            <!-- Left-box -->
             <div id="app" class="container_app">
                 <aside class="contacts_side">
-                    <div class="header_left">
-                        <div class="user_left">
+                    <div class="header">
+                        <div class="user">
                             <div class="user_img">
                                 <img src="img/avatar_2.jpg" alt="User Avatar">
                                 <p>Edoardo</p>
@@ -48,6 +49,7 @@
                         <i class="fas fa-search"></i>
                         <input class="search_input" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
+                    <!-- contacts area -->
                     <div class="contacts">
                         <div class="user_box active">
                             <div class="user_box_img">
@@ -102,9 +104,68 @@
                             </div>
                         </div>
                     </div>
+                    <!-- /contacts area -->
                 </aside>
-                <section class="messagges_side"></section>
+                <!-- /Left-box -->
+                <!-- Right-box -->
+                <section class="messagges_side">
+                    <div class="header">
+                        <div class="user">
+                            <div class="user_img">
+                                <img src="img/avatar_1.jpg" alt="User Avatar">
+                                <div class="name_last">
+                                    <span id="chat_name">Michele</span>
+                                    <span id="last_access">Ultimo accesso oggi alle 10/01/2020 16:15:22</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="icons_right">
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+                    <!-- Message-area -->
+                    <div class="messagge_box">
+                        <div class="message clearfix">
+                            <div class="received">
+                                <p>Tutto fatto!</p>
+                                <span>10/01/2020</span>
+                                <span>16:15:22</span>
+                            </div>
+                            <div class="message clearfix">
+                                <div class="received">
+                                    <p>Tutto fatto!</p>
+                                    <span>10/01/2020</span>
+                                    <span>16:15:22</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message clearfix">
+                            <div class="sent">
+                                <p>Tutto fatto!</p>
+                                <span>10/01/2020</span>
+                                <span>16:15:22</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Message-area -->
+                    <!-- /Right-box -->
+                    <div class="footer_right">
+                        <div class="smile">
+                            <i class="far fa-smile"></i>
+                        </div>
+                        <div class="write">
+                            <input type="text" placeholder="Scrivi un messaggio">
+                        </div>
+                        <div class="record">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                    </div>
+                    </div>
+                </section>
             </div>
         </div>
+        <script src="js/script.js"></script>
     </body>
 </html>
