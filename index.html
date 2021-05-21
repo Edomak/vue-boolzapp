@@ -7,9 +7,11 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <!-- Day.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- Vue.js -->
+        <!-- Vue.js for Dev -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
         <!-- My Style -->
         <link rel="stylesheet" href="css/style.css">
@@ -26,7 +28,7 @@
                     <div class="header">
                         <div class="user">
                             <div class="user_img">
-                                <img src="img/avatar_2.jpg" alt="User Avatar">
+                                <img src="img/avatar_8.jpg" alt="User Avatar">
                                 <p>Edoardo</p>
                             </div>
                         </div>
@@ -51,58 +53,18 @@
                     </div>
                     <!-- contacts area -->
                     <div class="contacts">
-                        <div v-for="contact, index in contacts" class="user_box active">
+                        <div v-for="(contact, index) in contacts" class="user_box" :class="(index == activeIndex) ? 'active' : ''" @click="setActive(index)" >
                             <div class="user_box_img">
-                                <img :src="'img/avatar' + contact.avatar + '.jpg'" alt="Avatar">
+                                <img :src="getAvatarImg(index)" alt="Avatar">
                                 <div class="user_box_name">
                                     <h4>{{ contact.name }}</h4>
-                                    <span>Tutto fatto!...</span>
+                                    <span>{{ getLastMessageText(index) }}</span>
                                 </div>
                             </div>
                             <div class="date">
-                                <span>10/01/2020</span>
-                                <span>16:15:22</span>
+                                <span>{{ getLastMessageDate(index) }}</span>
                             </div>
                         </div>
-                        <!-- <div class="user_box">
-                            <div class="user_box_img">
-                                <img src="img/avatar_3.jpg" alt="Avatar">
-                                <div class="user_box_name">
-                                    <h4>Fabio</h4>
-                                    <span>Mi piacerebbe ma devo andare a...</span>
-                                </div>
-                            </div>
-                            <div class="date">
-                                <span>10/01/2020</span>
-                                <span>16:15:22</span>
-                            </div>
-                        </div>
-                        <div class="user_box">
-                            <div class="user_box_img">
-                                <img src="img/avatar_4.jpg" alt="Avatar">
-                                <div class="user_box_name">
-                                    <h4>Samuela</h4>
-                                    <span>Ah! Scusa!...</span>
-                                </div>
-                            </div>
-                            <div class="date">
-                                <span>10/01/2020</span>
-                                <span>16:15:22</span>
-                            </div>
-                        </div>
-                        <div class="user_box">
-                            <div class="user_box_img">
-                                <img src="img/avatar_6.jpg" alt="Avatar">
-                                <div class="user_box_name">
-                                    <h4>Luisa</h4>
-                                    <span>Si ma preferirei andare al ci...</span>
-                                </div>
-                            </div>
-                            <div class="date">
-                                <span>10/01/2020</span>
-                                <span>16:15:22</span>
-                            </div>
-                        </div> -->
                     </div>
                     <!-- /contacts area -->
                 </aside>
@@ -112,10 +74,10 @@
                     <div class="header">
                         <div class="user">
                             <div class="user_img">
-                                <img src="img/avatar_1.jpg" alt="User Avatar">
+                                <img :src="getAvatarImg(activeIndex)" alt="ActiveAvatar">
                                 <div class="name_last">
-                                    <span id="chat_name">Michele</span>
-                                    <span id="last_access">Ultimo accesso oggi 10/01/2020 alle 16:15:22</span>
+                                    <span id="chat_name">{{ contacts[activeIndex].name }}</span>
+                                    <span id="last_access">Ultimo accesso {{ getLastMessageDate(activeIndex) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -126,27 +88,10 @@
                         </div>
                     </div>
                     <!-- Message-area -->
-                    <div class="message_box">
-                        <div class="message clearfix">
-                            <div class="received">
-                                <p>Tutto fatto!</p>
-                                <span>10/01/2020</span>
-                                <span>16:15:22</span>
-                            </div>
-                            <div class="message clearfix">
-                                <div class="received">
-                                    <p>Tutto fatto!</p>
-                                    <span>10/01/2020</span>
-                                    <span>16:15:22</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message clearfix">
-                            <div class="sent">
-                                <p>Tutto fatto!</p>
-                                <span>10/01/2020</span>
-                                <span>16:15:22</span>
-                            </div>
+                    <div class="message_box clearfix">
+                        <div v-for="message, index in contacts[activeIndex].messages" :class="message.status" class="message clearfix">
+                            <p>{{ message.text }}</p>
+                            <span>{{ message.date }}</span>
                         </div>
                     </div>
                     <!-- /Message-area -->

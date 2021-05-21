@@ -170,6 +170,9 @@
     border-bottom: 1px solid #e8ebeb;
     cursor: pointer;
 }
+.user_box:hover {
+    border: 2px solid #1b3039;
+}
 
 .active {
     background-color: #e8ebeb;
@@ -238,27 +241,27 @@
     padding: 30px 0;
 }
 
-.message {
-    width: 100%;
-}
-
 .received {
+    position: relative;
     float: right;
-    width: 250px;
-    height: 40px;
-    line-height: 40px;
+    width: 300px;
+    height: 50px;
     background-color: #d4faba;
     border-radius: 8px;
     margin: 5px 40px;
+    clear: both;
+    padding-top: 12px;
 }
 .sent {
+    position: relative;
     float: left;
-    width: 250px;
-    height: 40px;
-    line-height: 40px;
+    width: 300px;
+    height: 50px;
     background-color: white;
     border-radius: 8px;
     margin: 15px 40px;
+    clear: both;
+    padding-top: 12px;
 }
 .sent p,
 .received p {
@@ -269,9 +272,10 @@
 }
 .sent span,
 .received span {
-    position: relative;
-    left: 90px;
-    top: 10px;
+    float: right;
+    position: absolute;
+    bottom: 3px;
+    right: 8px;
     font-size: 8px;
     color: grey;
 }
