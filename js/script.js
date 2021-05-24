@@ -3,9 +3,19 @@
 // Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse;
 // Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto, ricavandoli dall'array contacts.
 
-// Milestone 2
+// Milestone 2:
+
 // Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i messaggi relativi al contatto attivo all'interno del pannello della conversazione.
 // Click sul contatto mostra la conversazione del contatto cliccato.
+
+// Milestone 3:
+
+// Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
+// Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
+
+// Milestone 4:
+
+// Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 
 var app = new Vue(
     {
@@ -96,23 +106,61 @@ var app = new Vue(
                     ],
                 },
             ],
-            activeIndex: 0
+            activeIndex: 0,
+            myMessage: "",
+            pcAnswer: "Ok!",
+            currentDate: "",
+            searchInput: "",
+        },
+        // Creo una nuova funzione che assegna alla variabile currentDate la data corrente.
+        created: function () {
+            var d = new Date();
+            this.currentDate = dayjs().format('DD/MM/YYYY HH:mm:ss');
         },
         methods: {
+            // Funzione che associa al click il rispettivo indice del contatto selezionato.
             setActive: function(newIndex) {
                 this.activeIndex = newIndex;
             },
+            // Funzione che ritorna, tramite l activeIndex, la rispettiva immagine del contatto attivo e la compone con lo strumento "template literal".
             getAvatarImg: function (activeIndex) {
                 return `img/avatar${this.contacts[activeIndex].avatar}.jpg`;
             },
+            // Ricavo dai data l'ultimo messaggio ricevuto e con substr creo una sottostringa che ha lunghezza max di 25 caratteri.
             getLastMessageText: function (contactIndex) {
                 const lastMessageIndex = this.contacts[contactIndex].messages.length - 1;
-                return this.contacts[contactIndex].messages[lastMessageIndex].text.substr(0, 25) + "...";
+                return this.contacts[contactIndex].messages[lastMessageIndex].text.substr(0, 25) + " ...";
             },
+            // Ricavo la data dell'ultimo messaggio.
             getLastMessageDate: function (contactIndex) {
                 const lastMessageIndex = this.contacts[contactIndex].messages.length - 1;
                 return this.contacts[contactIndex].messages[lastMessageIndex].date;
             },
+            // Funzione che pusha nell'array contacts il nuovo messaggio tramite l'input agganciato ad un v-model.
+            sendMsg: function (activeIndex) {
+                if (this.myMessage.trim().length > 0) {
+                    this.contacts[this.activeIndex].messages.push({
+                        date: this.currentDate,
+                        text: this.myMessage,
+                        status: 'sent'
+                    });
+                };
+                this.myMessage = "";
+                // Genero la risposta automatica dopo 2s e imposto lo status del messaggio pushato da "sent" a "received".
+                setTimeout (() => {
+                    this.contacts[this.activeIndex].messages.push({
+                        date: this.currentDate,
+                        text: this.pcAnswer,
+                        status: 'received'
+                    });
+                },2000);
+            },
+            search: function () {
+                let searchContact = this.searchInput.toLowerCase();
+                this.contacts.forEach(element => {
+                    
+                });
+            }
         }
     }
 );

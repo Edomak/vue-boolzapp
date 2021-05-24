@@ -154,9 +154,12 @@
 
 /* Contacts */
 
+.contacts_side {
+    overflow-y: auto;
+}
+
 .contacts {
     height: 100%;
-    overflow-y: auto;
 }
 
 .user_box {
@@ -176,6 +179,12 @@
 
 .active {
     background-color: #e8ebeb;
+}
+.visible {
+    visibility: visible;
+}
+.not_visible {
+    visibility: hidden;
 }
 
 .user_box_img {
@@ -230,6 +239,10 @@
     display: inline-block;
     font-size: 14px;
     color: #1b3039;
+}
+
+.message_side {
+    overflow-y: auto;
 }
 
 .message_box {
@@ -328,6 +341,10 @@
     font-size: 12px;
     padding-left: 20px;
     color: grey;
+    font-weight: bold;
+}
+input {
+    padding-left: 20px;
 }
 
 
