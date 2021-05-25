@@ -46,6 +46,11 @@
     height: 100%;
 }
 
+.dark_bg {
+    background-color: #1f2c33;
+    color: white;
+}
+
 /* App */
 
 /* Left-Box */
@@ -245,6 +250,44 @@
     overflow-y: auto;
 }
 
+.message > i {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.dropdown {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 50px;
+    right: 0;
+    width: 100px;
+    height: 80px;
+    background-color: #1b3039;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.delete:hover {
+    color: red;
+}
+.info:hover {
+    color:#d4faba;
+}
+
+.dropdown ul {
+    list-style: none;
+}
+.dropdown ul > li {
+    padding: 5px 0;
+    cursor: pointer;
+    text-align: center;
+}
+
 .message_box {
     width: 100%;
     height: calc(100% - 120px);
@@ -254,7 +297,7 @@
     padding: 30px 0;
 }
 
-.received {
+.sent {
     position: relative;
     float: right;
     width: 300px;
@@ -265,7 +308,7 @@
     clear: both;
     padding-top: 12px;
 }
-.sent {
+.received {
     position: relative;
     float: left;
     width: 300px;

@@ -49,11 +49,11 @@
                     </div>
                     <div class="search">
                         <i class="fas fa-search"></i>
-                        <input v-model="searchInput" class="search_input" type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input v-model="searchInput" class="search_input" @keyDown="search" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
                     <!-- contacts area -->
                     <div class="contacts">
-                        <div v-for="(contact, index) in contacts" class="user_box" :class="(index == activeIndex) ? 'active' : ''" @click="setActive(index)" >
+                        <div v-for="(contact, index) in contacts" class="user_box" :class="(index == activeIndex) ? 'active' : ''" @click="setActive(index)" v-show="contact.visible">
                             <div class="user_box_img">
                                 <img :src="getAvatarImg(index)" alt="Avatar">
                                 <div class="user_box_name">
@@ -91,6 +91,13 @@
                     <div class="message_box clearfix">
                         <div v-for="message, index in contacts[activeIndex].messages" :class="message.status" class="message clearfix">
                             <p>{{ message.text }}</p>
+                            <i class="fas fa-chevron-down" @click="dropDownToggle(index)"></i>
+                            <div class="dropdown" v-show="msgIndex == index">
+                                <ul>
+                                    <li class="info"> <i class="fas fa-info-circle"></i> Message Info</li>
+                                    <li class="delete" @click="deleteMsg()"> <i class="fas fa-trash-alt"></i> Delete</li>
+                                </ul>
+                            </div>
                             <span>{{ message.date }}</span>
                         </div>
                     </div>

@@ -111,22 +111,19 @@ var app = new Vue(
             pcAnswer: "Ok!",
             currentDate: "",
             searchInput: "",
-        },
-        // Creo una nuova funzione che assegna alla variabile currentDate la data corrente.
-        created: function () {
-            var d = new Date();
-            this.currentDate = dayjs().format('DD/MM/YYYY HH:mm:ss');
+            msgIndex: -1
         },
         methods: {
             // Funzione che associa al click il rispettivo indice del contatto selezionato.
             setActive: function(newIndex) {
                 this.activeIndex = newIndex;
+                this.msgIndex = -1;
             },
             // Funzione che ritorna, tramite l activeIndex, la rispettiva immagine del contatto attivo e la compone con lo strumento "template literal".
             getAvatarImg: function (activeIndex) {
                 return `img/avatar${this.contacts[activeIndex].avatar}.jpg`;
             },
-            // Ricavo dai data l'ultimo messaggio ricevuto e con substr creo una sottostringa che ha lunghezza max di 25 caratteri.
+            // Ricavo dai data l'ultimo messaggio ricevuto e con il metodo substr() creo una sottostringa che ha lunghezza max di 25 caratteri.
             getLastMessageText: function (contactIndex) {
                 const lastMessageIndex = this.contacts[contactIndex].messages.length - 1;
                 return this.contacts[contactIndex].messages[lastMessageIndex].text.substr(0, 25) + " ...";
@@ -136,11 +133,11 @@ var app = new Vue(
                 const lastMessageIndex = this.contacts[contactIndex].messages.length - 1;
                 return this.contacts[contactIndex].messages[lastMessageIndex].date;
             },
-            // Funzione che pusha nell'array contacts il nuovo messaggio tramite l'input agganciato ad un v-model.
+            // Funzione che pusha nell'array contacts il nuovo oggetto messaggio tramite l'input agganciato ad un v-model.
             sendMsg: function (activeIndex) {
                 if (this.myMessage.trim().length > 0) {
                     this.contacts[this.activeIndex].messages.push({
-                        date: this.currentDate,
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: this.myMessage,
                         status: 'sent'
                     });
@@ -149,17 +146,38 @@ var app = new Vue(
                 // Genero la risposta automatica dopo 2s e imposto lo status del messaggio pushato da "sent" a "received".
                 setTimeout (() => {
                     this.contacts[this.activeIndex].messages.push({
-                        date: this.currentDate,
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: this.pcAnswer,
                         status: 'received'
                     });
                 },2000);
             },
+            // Funzione che filtra i contatti confrontando il searchInput con gli element.name tramite un ciclo forEach.
+            // toLowerCase: metodo che coverte una stringa in lettere minuiscole senza modificarla.
+            // startsWith: metodo che determina se una stringa inizia con gli stessi caratteri di un'altra specifica (return Boolean). 
             search: function () {
                 let searchContact = this.searchInput.toLowerCase();
                 this.contacts.forEach(element => {
-                    
+                    if (element.name.toLowerCase().startsWith(searchContact)) {
+                        element.visible = true;
+                    } else {
+                        element.visible = false;
+                    }
                 });
+            },
+            // Funzione che associa l'apertura (e chiusura) del dropdown allo specifico messaggio cliccato.
+            dropDownToggle: function (index) {
+                if ( this.msgIndex == -1 || this.msgIndex != index) {
+                    this.msgIndex = index;
+                } else {
+                    this.msgIndex = -1;
+                }
+            },
+            // Con il metodo splice() cancello il messaggio selezionato.
+            deleteMsg: function () {
+                this.contacts[this.activeIndex].messages.splice(this.msgIndex, 1);
+
+                this.msgIndex = -1;
             }
         }
     }
